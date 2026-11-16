@@ -17,28 +17,15 @@ Os principais riscos de segurança incluem:
 
 ---
 
-### Detalhamento dos Riscos e Recomendações de Mitigação
+### Estratégias de mitigação
 
-#### 1. Vazamento de dados e exposição à privacidade
-* **Mitigação:** Implemente filtragem rigorosa de saídas, mascaramento de dados (DLP - Data Loss Prevention) e políticas de menor privilégio (Least Privilege) para os dados que o agente tem permissão de acessar.
+Para reduzir esses riscos, adote uma abordagem de segurança por design que inclua:
 
-#### 2. Ataques de injeção e manipulação de comandos (Prompt Injection)
-* **Mitigação:** Trate todas as entradas de usuários e sistemas externos como não confiáveis. Utilize delimitadores rígidos, validadores de prompt e camadas de firewall de IA (como Azure AI Content Safety).
+* **Impondo controles de acesso baseados em função (RBAC)** e permissões de mínimos privilégios
+* **Adicionando camadas de filtragem e validação de prompt** para evitar ataques de injeção
+* **Isolamento ou bloqueio de operações sensíveis** atrás de aprovações com intervenção humana
+* **Manter registro abrangente e rastreabilidade** para todas as ações do agente
+* **Auditoria regular** de dependências e integrações de terceiros
+* **Treinar e validar modelos continuamente** para detectar desvio de dados ou tentativas de envenenamento.
 
-#### 3. Acesso não autorizado e escalonamento de privilégios
-* **Mitigação:** Use autenticação robusta (OAuth 2.0 / Entra ID), controle de acesso baseado em função (RBAC) e limite o escopo de execução dos agentes nos sistemas integrados.
-
-#### 4. Envenenamento por dados (Data Poisoning)
-* **Mitigação:** Realize sanitização contínua de bases de dados de RAG e conjuntos de ajuste fino (fine-tuning), assegurando a integridade e proveniência dos dados.
-
-#### 5. Vulnerabilidades da cadeia de suprimentos
-* **Mitigação:** Audite e restrinja plugins, bibliotecas de terceiros e APIs externas utilizadas pelos agentes, mantendo dependências sempre verificadas e assinadas.
-
-#### 6. Dependência excessiva de ações autônomas
-* **Mitigação:** Implemente fluxos *Human-in-the-loop* (HITL) para ações de alto impacto (ex.: pagamentos, exclusões e publicações públicas) e limites de taxa de execução.
-
-#### 7. Auditabilidade e registro em log inadequados
-* **Mitigação:** Habilite telemetria centralizada, logs detalhados de prompt-resposta, rastreamento distribuído (tracing) e monitoramento contínuo de anomalias.
-
-#### 8. Inversão de modelo e vazamento de saída
-* **Mitigação:** Limite o número de requisições por usuário (rate limiting), evite expor logit/probabilidades brutas e utilize técnicas de privacidade diferencial quando aplicável.
+Ao inserir essas práticas no início do desenvolvimento, você pode implantar agentes de IA com segurança e confiança em ambientes do mundo real.
